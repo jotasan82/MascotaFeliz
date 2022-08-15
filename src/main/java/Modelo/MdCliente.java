@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
 /**
  *
  * @author pixel
@@ -97,5 +98,26 @@ public class MdCliente {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+    
+    public LinkedList<Cliente> buscarTodosClientes(){
+        LinkedList<Cliente> cl = new LinkedList<>();
+        try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String consulta = "SELECT * FROM cliente ORDER BY nombres";
+            PreparedStatement statement = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+            ResultSet result = statement.executeQuery();
+            while(result.next()){
+                String iden = result.getString(2);
+                String nombre = result.getString(3);
+                String apellido = result.getString(4);
+                String direccion = result.getString(5);
+                String telefono = result.getString(6);
+                Cliente c = new Cliente(iden, nombre, apellido, direccion, telefono);
+                cl.add(c);
+            }
+            return cl;
+        }catch(Exception e){
+        }
+        return cl;
     }
 }

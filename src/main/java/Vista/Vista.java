@@ -6,6 +6,9 @@ package Vista;
 
 import Clases.*;
 import Controlador.*;
+import java.util.LinkedList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -14,11 +17,14 @@ import javax.swing.JOptionPane;
 public class Vista extends javax.swing.JFrame {
     CtPlan CtPlan;
     CtCliente CtCliente;
+    LinkedList<Cliente> clienteComboBox;
+    
     /**
      * Creates new form Vista
      */
     public Vista() {
         initComponents();
+        recargarComboBoxCliente();
         this.CtPlan = new CtPlan();
         this.CtCliente = new CtCliente();
     }
@@ -61,6 +67,24 @@ public class Vista extends javax.swing.JFrame {
         btnModificarCliente = new javax.swing.JButton();
         btnBorrarCliente = new javax.swing.JButton();
         btnLimpiarCliente = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        codigoMascota = new javax.swing.JTextField();
+        nombreMascota = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        annioNacMascota = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        pesoMascota = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        clienteMascota = new javax.swing.JComboBox<>();
+        btnCrearMascota = new javax.swing.JButton();
+        btnConsultarMascota = new javax.swing.JButton();
+        btnModificarMascota = new javax.swing.JButton();
+        btnBorrarMascota = new javax.swing.JButton();
+        btnLimpiarMascota = new javax.swing.JButton();
+        especieMascota = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,34 +248,33 @@ public class Vista extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(identificacionCliente)
-                            .addComponent(nombreCliente)
-                            .addComponent(apellidoCliente)
-                            .addComponent(direccionCliente)
-                            .addComponent(telefonoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCrearCliente)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnConsultarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnModificarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBorrarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLimpiarCliente)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(identificacionCliente)
+                    .addComponent(nombreCliente)
+                    .addComponent(apellidoCliente)
+                    .addComponent(direccionCliente)
+                    .addComponent(telefonoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCrearCliente)
+                .addGap(18, 18, 18)
+                .addComponent(btnConsultarCliente)
+                .addGap(18, 18, 18)
+                .addComponent(btnModificarCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBorrarCliente)
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpiarCliente)
+                .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,6 +310,124 @@ public class Vista extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Cliente", jPanel2);
+
+        jLabel9.setText("Código");
+
+        jLabel10.setText("Nombre");
+
+        jLabel11.setText("Año de Nacimiento");
+
+        jLabel12.setText("Peso");
+
+        jLabel13.setText("Especie");
+
+        jLabel14.setText("Cliente");
+
+        clienteMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnCrearMascota.setText("Crear");
+        btnCrearMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearMascotaActionPerformed(evt);
+            }
+        });
+
+        btnConsultarMascota.setText("Consultar");
+        btnConsultarMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarMascotaActionPerformed(evt);
+            }
+        });
+
+        btnModificarMascota.setText("Modificar");
+        btnModificarMascota.setEnabled(false);
+
+        btnBorrarMascota.setText("Borrar");
+        btnBorrarMascota.setEnabled(false);
+
+        btnLimpiarMascota.setText("Limpiar");
+
+        especieMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canino", "Felino" }));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(codigoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nombreMascota)
+                                    .addComponent(annioNacMascota)
+                                    .addComponent(pesoMascota)
+                                    .addComponent(clienteMascota, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(especieMascota, 0, 250, Short.MAX_VALUE))))
+                        .addGap(54, 54, 54))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnCrearMascota)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnConsultarMascota)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificarMascota)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBorrarMascota)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiarMascota)
+                        .addGap(0, 13, Short.MAX_VALUE))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(codigoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(nombreMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(annioNacMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pesoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(especieMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(clienteMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearMascota)
+                    .addComponent(btnConsultarMascota)
+                    .addComponent(btnModificarMascota)
+                    .addComponent(btnBorrarMascota)
+                    .addComponent(btnLimpiarMascota))
+                .addGap(18, 18, 18))
+        );
+
+        jTabbedPane1.addTab("Mascota", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -471,6 +612,21 @@ public class Vista extends javax.swing.JFrame {
         limpiarClientes();
     }//GEN-LAST:event_btnBorrarClienteActionPerformed
 
+    private void btnConsultarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarMascotaActionPerformed
+
+    private void btnCrearMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMascotaActionPerformed
+        String codigo = codigoMascota.getText();
+        String nombre = nombreMascota.getText();
+        int annioNac = Integer.parseInt(annioNacMascota.getText());
+        int peso = Integer.parseInt(pesoMascota.getText());
+        String especie = especieMascota.getSelectedItem().toString();
+        int idPKCliente = CtCliente.obtenerIdPKClienteComboBox(clienteComboBox, clienteMascota);
+        Mascota m = new Mascota(codigo, nombre, annioNac, peso, especie, idPKCliente);
+        
+    }//GEN-LAST:event_btnCrearMascotaActionPerformed
+
     private void limpiarCampos(){
         codigoPlan.setText("");
         precioPlan.setText("");
@@ -488,6 +644,17 @@ public class Vista extends javax.swing.JFrame {
         btnBorrarCliente.setEnabled(false);
     }
     
+    private void recargarComboBoxCliente(){
+        clienteMascota.removeAllItems();
+        this.clienteComboBox = CtCliente.listarTodosClientes();
+        int contador = 0;
+        while(contador<clienteComboBox.size()){
+            String tempNombre;
+            tempNombre = clienteComboBox.get(contador).getNombre() + " " + clienteComboBox.get(contador).getApellido();
+            clienteMascota.addItem(tempNombre);
+            contador = contador+1;
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -525,21 +692,35 @@ public class Vista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField annioNacMascota;
     private javax.swing.JTextField apellidoCliente;
     private javax.swing.JButton btnBorrarCliente;
+    private javax.swing.JButton btnBorrarMascota;
     private javax.swing.JButton btnBorrarPlan;
     private javax.swing.JButton btnConsultarCliente;
+    private javax.swing.JButton btnConsultarMascota;
     private javax.swing.JButton btnConsultarPlan;
     private javax.swing.JButton btnCrearCliente;
+    private javax.swing.JButton btnCrearMascota;
     private javax.swing.JButton btnCrearPlan;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiarCliente;
+    private javax.swing.JButton btnLimpiarMascota;
     private javax.swing.JButton btnModificarCliente;
+    private javax.swing.JButton btnModificarMascota;
     private javax.swing.JButton btnModificarPlan;
+    private javax.swing.JComboBox<String> clienteMascota;
+    private javax.swing.JTextField codigoMascota;
     private javax.swing.JTextField codigoPlan;
     private javax.swing.JTextField direccionCliente;
+    private javax.swing.JComboBox<String> especieMascota;
     private javax.swing.JTextField identificacionCliente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -547,11 +728,15 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField nombreCliente;
+    private javax.swing.JTextField nombreMascota;
     private javax.swing.JComboBox<String> nombrePlan;
+    private javax.swing.JTextField pesoMascota;
     private javax.swing.JTextField precioPlan;
     private javax.swing.JTextField telefonoCliente;
     // End of variables declaration//GEN-END:variables

@@ -14,19 +14,18 @@ public class Mascota {
     private int annioNac;
     private double peso;
     private String especie;
-    private Plan pl;
-    private Pago pg;
+    int idCliente;
 
-    public Mascota(String codigo, String nombre, int annioNac, double peso, String especie, Plan pl, Pago pg) {
+    public Mascota(String codigo, String nombre, int annioNac, double peso, String especie, int idCliente) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.annioNac = annioNac;
         this.peso = peso;
         this.especie = especie;
-        this.pl = pl;
-        this.pg = pg;
+        this.idCliente = idCliente;
     }
 
+    
     /**
      * @return the codigo
      */
@@ -97,31 +96,4 @@ public class Mascota {
         this.especie = especie;
     }
 
-    /**
-     * @return the pl
-     */
-    public Plan getPl() {
-        return pl;
-    }
-
-    /**
-     * @param pl the pl to set
-     */
-    public void setPl(Plan pl) {
-        this.pl = pl;
-    }
-
-    /**
-     * @return the pg
-     */
-    public Pago getPg() {
-        return pg;
-    }
-
-    /**
-     * @param pg the pg to set
-     */
-    public void setPg(Pago pg) {
-        this.pg = pg;
-    }
 }
