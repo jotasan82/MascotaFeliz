@@ -7,8 +7,6 @@ package Vista;
 import Clases.*;
 import Controlador.*;
 import java.util.LinkedList;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -24,9 +22,9 @@ public class Vista extends javax.swing.JFrame {
      */
     public Vista() {
         initComponents();
-        recargarComboBoxCliente();
         this.CtPlan = new CtPlan();
         this.CtCliente = new CtCliente();
+        recargarComboBoxCliente();
     }
 
     /**
