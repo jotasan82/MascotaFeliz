@@ -64,14 +64,13 @@ public class MdCliente {
     
     public boolean actualizarCliente(Cliente c){
         try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
-            String consulta = "UPDATE cliente SET identificacion = ?, nombres = ?, apellidos = ?, direccion = ?, telefono = ? WHERE identificacion = ?";
+            String consulta = "UPDATE cliente SET nombres = ?, apellidos = ?, direccion = ?, telefono = ? WHERE identificacion = ?";
             PreparedStatement statement = conn.prepareStatement(consulta);
-            statement.setString(1, c.getIdentificacion());
-            statement.setString(2, c.getNombre());
-            statement.setString(3, c.getApellido());
-            statement.setString(4, c.getDireccion());
-            statement.setString(5, c.getTelefono());
-            statement.setString(6, c.getIdentificacion());
+            statement.setString(1, c.getNombre());
+            statement.setString(2, c.getApellido());
+            statement.setString(3, c.getDireccion());
+            statement.setString(4, c.getTelefono());
+            statement.setString(5, c.getIdentificacion());
             int filasActualizadas = statement.executeUpdate();
             if(filasActualizadas > 0){
                 return true;
@@ -95,6 +94,7 @@ public class MdCliente {
                 return false;
             }
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return false;
         }
     }

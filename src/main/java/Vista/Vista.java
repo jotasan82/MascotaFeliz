@@ -422,10 +422,10 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La identificacion del Cliente no fue encontrado");
             limpiarClientes();
         }else{
-            nombreCliente.setText(c.getNombre());
-            apellidoCliente.setText(c.getApellido());
-            direccionCliente.setText(c.getDireccion());
-            telefonoCliente.setText(c.getTelefono());
+            nombreCliente.setText(String.valueOf(c.getNombre()));
+            apellidoCliente.setText(String.valueOf(c.getApellido()));
+            direccionCliente.setText(String.valueOf(c.getDireccion()));
+            telefonoCliente.setText(String.valueOf(c.getTelefono()));
             btnModificarCliente.setEnabled(true);
             btnBorrarCliente.setEnabled(true);
         }
