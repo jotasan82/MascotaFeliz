@@ -548,6 +548,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo agregar el Cliente a la base de datos");
         }
         limpiarClientes();
+        recargarComboBoxCliente();
     }//GEN-LAST:event_btnCrearClienteActionPerformed
 
     private void btnLimpiarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarClienteActionPerformed
@@ -588,6 +589,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe buscar el registro para actualizar");
         }
         limpiarClientes();
+        recargarComboBoxCliente();
     }//GEN-LAST:event_btnModificarClienteActionPerformed
 
     private void btnBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClienteActionPerformed
@@ -608,6 +610,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo borrar el registro");
         }
         limpiarClientes();
+        recargarComboBoxCliente();
     }//GEN-LAST:event_btnBorrarClienteActionPerformed
 
     private void btnConsultarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMascotaActionPerformed
@@ -646,7 +649,7 @@ public class Vista extends javax.swing.JFrame {
         clienteMascota.removeAllItems();
         this.clienteComboBox = CtCliente.listarTodosClientes();
         int contador = 0;
-        while(contador<clienteComboBox.size()){
+        while(contador < clienteComboBox.size()){
             String tempNombre;
             tempNombre = clienteComboBox.get(contador).getNombre() + " " + clienteComboBox.get(contador).getApellido();
             clienteMascota.addItem(tempNombre);
