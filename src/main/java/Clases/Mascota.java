@@ -9,12 +9,13 @@ package Clases;
  * @author Pixel
  */
 public class Mascota {
+
     private String codigo;
     private String nombre;
     private int annioNac;
     private double peso;
     private String especie;
-    int idCliente;
+    private int idCliente;
 
     public Mascota(String codigo, String nombre, int annioNac, double peso, String especie, int idCliente) {
         this.codigo = codigo;
@@ -94,6 +95,20 @@ public class Mascota {
      */
     public void setEspecie(String especie) {
         this.especie = especie;
+    }
+    
+    /**
+     * @return the idCliente
+     */
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    /**
+     * @param idCliente the idCliente to set
+     */
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
 }

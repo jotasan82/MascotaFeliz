@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class Vista extends javax.swing.JFrame {
     CtPlan CtPlan;
     CtCliente CtCliente;
+    CtMascota CtMascota;
     LinkedList<Cliente> clienteComboBox;
     
     /**
@@ -24,6 +25,7 @@ public class Vista extends javax.swing.JFrame {
         initComponents();
         this.CtPlan = new CtPlan();
         this.CtCliente = new CtCliente();
+        this.CtMascota = new CtMascota();
         recargarComboBoxCliente();
     }
 
@@ -344,6 +346,11 @@ public class Vista extends javax.swing.JFrame {
         btnBorrarMascota.setEnabled(false);
 
         btnLimpiarMascota.setText("Limpiar");
+        btnLimpiarMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarMascotaActionPerformed(evt);
+            }
+        });
 
         especieMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canino", "Felino" }));
 
@@ -621,12 +628,25 @@ public class Vista extends javax.swing.JFrame {
         String codigo = codigoMascota.getText();
         String nombre = nombreMascota.getText();
         int annioNac = Integer.parseInt(annioNacMascota.getText());
-        int peso = Integer.parseInt(pesoMascota.getText());
+        double peso = Double.parseDouble(pesoMascota.getText());
         String especie = especieMascota.getSelectedItem().toString();
-        int idPKCliente = CtCliente.obtenerIdPKClienteComboBox(clienteComboBox, clienteMascota);
-        Mascota m = new Mascota(codigo, nombre, annioNac, peso, especie, idPKCliente);
+        //int idPKCliente = CtCliente.obtenerIdPKClienteComboBox(clienteComboBox, clienteMascota);
+        String clienteSeleccionado = clienteMascota.getSelectedItem().toString();
+        int primerEspacio = clienteSeleccionado.indexOf(" ");
+        int idFkCliente = Integer.parseInt(clienteSeleccionado.substring(0, primerEspacio));
+        Mascota m = new Mascota(codigo, nombre, annioNac, peso, especie, idFkCliente);
+        if (this.CtMascota.crearMascota(m)){
+            JOptionPane.showMessageDialog(this, "La Mascota fue agregada a la base de datos");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo agregar la Mascota a la base de datos");
+        }
+        limpiarMascota();
         
     }//GEN-LAST:event_btnCrearMascotaActionPerformed
+
+    private void btnLimpiarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarMascotaActionPerformed
+        limpiarMascota();
+    }//GEN-LAST:event_btnLimpiarMascotaActionPerformed
 
     private void limpiarCampos(){
         codigoPlan.setText("");
@@ -645,13 +665,24 @@ public class Vista extends javax.swing.JFrame {
         btnBorrarCliente.setEnabled(false);
     }
     
+    private void limpiarMascota(){
+        codigoMascota.setText("");
+        nombreMascota.setText("");
+        annioNacMascota.setText("");
+        pesoMascota.setText("");
+        especieMascota.setSelectedIndex(0);
+        clienteMascota.setSelectedIndex(0);
+        btnModificarMascota.setEnabled(false);
+        btnBorrarMascota.setEnabled(false);
+    }
+    
     private void recargarComboBoxCliente(){
         clienteMascota.removeAllItems();
         this.clienteComboBox = CtCliente.listarTodosClientes();
         int contador = 0;
         while(contador < clienteComboBox.size()){
             String tempNombre;
-            tempNombre = clienteComboBox.get(contador).getNombre() + " " + clienteComboBox.get(contador).getApellido();
+            tempNombre = clienteComboBox.get(contador).getIdPK() + " " + clienteComboBox.get(contador).getIdentificacion() + " " + clienteComboBox.get(contador).getNombre() + " " + clienteComboBox.get(contador).getApellido();
             clienteMascota.addItem(tempNombre);
             contador = contador+1;
         }

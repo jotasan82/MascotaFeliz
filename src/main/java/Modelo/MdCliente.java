@@ -101,23 +101,25 @@ public class MdCliente {
     }
     
     public LinkedList<Cliente> buscarTodosClientes(){
-        LinkedList<Cliente> cl = new LinkedList<>();
+        LinkedList<Cliente> listaClientes = new LinkedList<>();
         try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
-            String consulta = "SELECT * FROM cliente ORDER BY nombres";
+            String consulta = "SELECT * FROM cliente";
             PreparedStatement statement = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
             ResultSet result = statement.executeQuery();
             while(result.next()){
+                int idPK = result.getInt(1);
                 String iden = result.getString(2);
                 String nombre = result.getString(3);
                 String apellido = result.getString(4);
                 String direccion = result.getString(5);
                 String telefono = result.getString(6);
                 Cliente c = new Cliente(iden, nombre, apellido, direccion, telefono);
-                cl.add(c);
+                c.setIdPK(idPK);
+                listaClientes.add(c);
             }
-            return cl;
+            return listaClientes;
         }catch(Exception e){
         }
-        return cl;
+        return listaClientes;
     }
 }
