@@ -8,6 +8,7 @@ import Clases.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 
@@ -37,6 +38,28 @@ public class MdMascota {
         }catch(Exception e){
             return false;
         }
+    }
+    
+    public Mascota buscarMascota(String codigo){
+        Mascota m = null;
+        try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String consulta = "SELECT * FROM mascota WHERE codigo = ?";
+            PreparedStatement statement = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, codigo);
+            ResultSet result = statement.executeQuery();
+            while(result.next()){
+                String cod = result.getString(2);
+                String nombre = result.getString(3);
+                int annioNac = result.getInt(4);
+                Double peso = result.getDouble(5);
+                String especie = result.getString(6);
+                int idCliente = result.getInt(7);
+                m = new Mascota(cod, nombre, annioNac, peso, especie, idCliente);
+            }
+            return m;
+        }catch(Exception e){
+        }
+        return m;
     }
     
 }

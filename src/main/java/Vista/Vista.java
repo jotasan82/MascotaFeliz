@@ -248,33 +248,34 @@ public class Vista extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(identificacionCliente)
-                    .addComponent(nombreCliente)
-                    .addComponent(apellidoCliente)
-                    .addComponent(direccionCliente)
-                    .addComponent(telefonoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                .addContainerGap(247, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCrearCliente)
-                .addGap(18, 18, 18)
-                .addComponent(btnConsultarCliente)
-                .addGap(18, 18, 18)
-                .addComponent(btnModificarCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBorrarCliente)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiarCliente)
-                .addGap(21, 21, 21))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(identificacionCliente)
+                            .addComponent(nombreCliente)
+                            .addComponent(apellidoCliente)
+                            .addComponent(direccionCliente)
+                            .addComponent(telefonoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnCrearCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnConsultarCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificarCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBorrarCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiarCliente)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,14 +300,14 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(telefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrearCliente)
                     .addComponent(btnConsultarCliente)
                     .addComponent(btnModificarCliente)
                     .addComponent(btnBorrarCliente)
                     .addComponent(btnLimpiarCliente))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cliente", jPanel2);
@@ -621,7 +622,25 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarClienteActionPerformed
 
     private void btnConsultarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMascotaActionPerformed
-        // TODO add your handling code here:
+        String codigo = codigoMascota.getText();
+        Mascota m = CtMascota.buscarMascota(codigo);
+        if (m == null){
+            JOptionPane.showMessageDialog(this, "El Codigo de la Mascota no fue encontrado");
+            limpiarMascota();
+        }else{
+            nombreMascota.setText(String.valueOf(m.getNombre()));
+            annioNacMascota.setText(String.valueOf(m.getAnnioNac()));
+            pesoMascota.setText(String.valueOf(m.getPeso()));
+            if(m.getEspecie().equals("Canino")){
+                especieMascota.setSelectedIndex(0);
+            }else{
+                especieMascota.setSelectedIndex(1); 
+            }
+            clienteMascota.setSelectedItem(m.getIdCliente());
+            //telefonoClie.setText(String.valueOf(c.getTelefono()));
+            btnModificarMascota.setEnabled(true);
+            btnBorrarMascota.setEnabled(true);
+        }
     }//GEN-LAST:event_btnConsultarMascotaActionPerformed
 
     private void btnCrearMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMascotaActionPerformed

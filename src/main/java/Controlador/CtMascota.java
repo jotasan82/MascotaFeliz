@@ -23,4 +23,10 @@ public class CtMascota {
         }
         return true;
     }
+    
+    public Mascota buscarMascota(String codigo){
+       Mascota m = null;
+       m = this.MdMascota.buscarMascota(codigo);
+       return m;
+   }
 }
