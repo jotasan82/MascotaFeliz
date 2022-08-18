@@ -62,4 +62,25 @@ public class MdMascota {
         return m;
     }
     
+    public boolean modificarMascota(Mascota m){
+        try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String consulta = "UPDATE mascota SET nombre = ?, annioNac = ?, peso = ?, especie = ?, idCliente = ? WHERE codigo = ?";
+            PreparedStatement statement = conn.prepareStatement(consulta);
+            statement.setString(1, m.getNombre());
+            statement.setInt(2, m.getAnnioNac());
+            statement.setDouble(3, m.getPeso());
+            statement.setString(4, m.getEspecie());
+            statement.setInt(5, m.getIdCliente());
+            statement.setString(6, m.getCodigo());
+            int filasActualizadas = statement.executeUpdate();
+            if(filasActualizadas > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+    
 }

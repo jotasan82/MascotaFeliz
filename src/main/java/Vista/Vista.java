@@ -347,6 +347,11 @@ public class Vista extends javax.swing.JFrame {
 
         btnModificarMascota.setText("Modificar");
         btnModificarMascota.setEnabled(false);
+        btnModificarMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarMascotaActionPerformed(evt);
+            }
+        });
 
         btnBorrarMascota.setText("Borrar");
         btnBorrarMascota.setEnabled(false);
@@ -496,6 +501,7 @@ public class Vista extends javax.swing.JFrame {
             precioPlan.setText(String.valueOf(p.getPrecio()));
             btnModificarPlan.setEnabled(true);
             btnBorrarPlan.setEnabled(true);
+            btnCrearPlan.setEnabled(false);
         }
         
     }//GEN-LAST:event_btnConsultarPlanActionPerformed
@@ -676,15 +682,36 @@ public class Vista extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCrearMascotaActionPerformed
 
+    
+    
     private void btnLimpiarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarMascotaActionPerformed
         limpiarMascota();
     }//GEN-LAST:event_btnLimpiarMascotaActionPerformed
+
+    private void btnModificarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMascotaActionPerformed
+        String codigo = codigoMascota.getText();
+        String nombre = nombreMascota.getText();
+        int annioNac = Integer.parseInt(annioNacMascota.getText());
+        Double peso = Double.parseDouble(direccionCliente.getText());
+        String especie = especieMascota.getSelectedItem().toString();
+        String clienteSeleccionado = clienteMascota.getSelectedItem().toString();
+        int primerEspacio = clienteSeleccionado.indexOf(" ");
+        int idFkCliente = Integer.parseInt(clienteSeleccionado.substring(0, primerEspacio));
+        Mascota m = new Mascota(codigo, nombre, annioNac, peso, especie, idFkCliente);
+        if (this.CtMascota.modificarMascota(m)){
+            JOptionPane.showMessageDialog(this, "La Mascota fue modificada en la base de datos");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo modificar la Mascota en la base de datos");
+        }
+        limpiarMascota();
+    }//GEN-LAST:event_btnModificarMascotaActionPerformed
 
     private void limpiarCampos(){
         codigoPlan.setText("");
         precioPlan.setText("");
         btnModificarPlan.setEnabled(false);
         btnBorrarPlan.setEnabled(false);
+        btnCrearPlan.setEnabled(true);
     }
     
     private void limpiarClientes(){

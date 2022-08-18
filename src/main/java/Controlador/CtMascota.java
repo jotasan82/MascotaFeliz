@@ -29,4 +29,8 @@ public class CtMascota {
        m = this.MdMascota.buscarMascota(codigo);
        return m;
    }
+    
+    public boolean modificarMascota(Mascota m){
+       return this.MdMascota.modificarMascota(m);
+   }
 }
