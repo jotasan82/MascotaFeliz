@@ -16,7 +16,10 @@ public class Vista extends javax.swing.JFrame {
     CtPlan CtPlan;
     CtCliente CtCliente;
     CtMascota CtMascota;
+    CtPago CtPago;
     LinkedList<Cliente> clienteComboBox;
+    LinkedList<Mascota> mascotaComboBox;
+    LinkedList<Plan> planComboBox;
     
     /**
      * Creates new form Vista
@@ -26,7 +29,10 @@ public class Vista extends javax.swing.JFrame {
         this.CtPlan = new CtPlan();
         this.CtCliente = new CtCliente();
         this.CtMascota = new CtMascota();
+        this.CtPago = new CtPago();
         recargarComboBoxCliente();
+        recargarComboBoxMascota();
+        recargarComboBoxPlan();
     }
 
     /**
@@ -85,6 +91,20 @@ public class Vista extends javax.swing.JFrame {
         btnBorrarMascota = new javax.swing.JButton();
         btnLimpiarMascota = new javax.swing.JButton();
         especieMascota = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        fechaPago = new javax.swing.JTextField();
+        numCuotaPago = new javax.swing.JTextField();
+        mascotaPago = new javax.swing.JComboBox<>();
+        planPago = new javax.swing.JComboBox<>();
+        btnCrearPago = new javax.swing.JButton();
+        btnConsultarPago = new javax.swing.JButton();
+        btnModificarPago = new javax.swing.JButton();
+        btnBorrarPago = new javax.swing.JButton();
+        btnLimpiarPago = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -355,6 +375,11 @@ public class Vista extends javax.swing.JFrame {
 
         btnBorrarMascota.setText("Borrar");
         btnBorrarMascota.setEnabled(false);
+        btnBorrarMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarMascotaActionPerformed(evt);
+            }
+        });
 
         btnLimpiarMascota.setText("Limpiar");
         btnLimpiarMascota.addActionListener(new java.awt.event.ActionListener() {
@@ -444,6 +469,100 @@ public class Vista extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Mascota", jPanel3);
+
+        jLabel15.setText("Fecha Pago");
+
+        jLabel16.setText("No. Cuota");
+
+        jLabel17.setText("Mascota");
+
+        jLabel18.setText("Plan");
+
+        mascotaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        planPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnCrearPago.setText("Crear");
+        btnCrearPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPagoActionPerformed(evt);
+            }
+        });
+
+        btnConsultarPago.setText("Consultar");
+
+        btnModificarPago.setText("Modificar");
+        btnModificarPago.setEnabled(false);
+
+        btnBorrarPago.setText("Borrar");
+        btnBorrarPago.setEnabled(false);
+
+        btnLimpiarPago.setText("Limpiar");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15)
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel17)
+                        .addComponent(jLabel18))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnCrearPago)
+                        .addGap(7, 7, 7)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fechaPago)
+                            .addComponent(numCuotaPago)
+                            .addComponent(mascotaPago, 0, 250, Short.MAX_VALUE)
+                            .addComponent(planPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(btnConsultarPago)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificarPago)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBorrarPago)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiarPago)))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(fechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(numCuotaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(mascotaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(planPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearPago)
+                    .addComponent(btnConsultarPago)
+                    .addComponent(btnModificarPago)
+                    .addComponent(btnBorrarPago)
+                    .addComponent(btnLimpiarPago))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Pago", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -683,7 +802,6 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo agregar la Mascota a la base de datos");
         }
         limpiarMascota();
-        
     }//GEN-LAST:event_btnCrearMascotaActionPerformed
 
     
@@ -709,6 +827,42 @@ public class Vista extends javax.swing.JFrame {
         }
         limpiarMascota();
     }//GEN-LAST:event_btnModificarMascotaActionPerformed
+
+    private void btnCrearPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPagoActionPerformed
+        String fecha = fechaPago.getText();
+        int cuota = Integer.parseInt(numCuotaPago.getText());
+        String mascotaSeleccionada = mascotaPago.getSelectedItem().toString();
+        int primerEspacio = mascotaSeleccionada.indexOf(" ");
+        int idFkMascota = Integer.parseInt(mascotaSeleccionada.substring(0, primerEspacio));
+        String planSeleccionado = planPago.getSelectedItem().toString();
+        int primerEsp = planSeleccionado.indexOf(" ");
+        int idFkPlan = Integer.parseInt(planSeleccionado.substring(0, primerEsp));
+        Pago p = new Pago(fecha, cuota, idFkMascota, idFkPlan);
+        if (this.CtPago.crearPago(p)){
+            JOptionPane.showMessageDialog(this, "El Pago fue agregado a la base de datos");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo agregar el Pago a la base de datos");
+        }
+        limpiarPago();
+    }//GEN-LAST:event_btnCrearPagoActionPerformed
+
+    private void btnBorrarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarMascotaActionPerformed
+        String codigo = codigoMascota.getText();
+        String nombre = nombreMascota.getText();
+        int annioNac = Integer.parseInt(annioNacMascota.getText());
+        int peso = Integer.parseInt(pesoMascota.getText());
+        String especie = especieMascota.getSelectedItem().toString();
+        String clienteSeleccionado = clienteMascota.getSelectedItem().toString();
+        int primerEspacio = clienteSeleccionado.indexOf(" ");
+        int idFkCliente = Integer.parseInt(clienteSeleccionado.substring(0, primerEspacio));
+        Mascota m = new Mascota(codigo, nombre, annioNac, peso, especie, idFkCliente);
+        if (this.CtMascota.borrarMascota(m)){
+            JOptionPane.showMessageDialog(this, "La Mascota fue borrada de la base de datos");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo borrar la Mascota de la base de datos");
+        }
+        limpiarMascota();
+    }//GEN-LAST:event_btnBorrarMascotaActionPerformed
 
     private void limpiarCampos(){
         codigoPlan.setText("");
@@ -741,6 +895,16 @@ public class Vista extends javax.swing.JFrame {
         btnCrearMascota.setEnabled(true);
     }
     
+    private void limpiarPago(){
+        fechaPago.setText("");
+        numCuotaPago.setText("");
+        mascotaPago.setSelectedIndex(0);
+        planPago.setSelectedIndex(0);
+        btnModificarPago.setEnabled(false);
+        btnBorrarPago.setEnabled(false);
+        btnCrearPago.setEnabled(true);
+    }
+    
     private void recargarComboBoxCliente(){
         clienteMascota.removeAllItems();
         this.clienteComboBox = CtCliente.listarTodosClientes();
@@ -749,6 +913,30 @@ public class Vista extends javax.swing.JFrame {
             String tempNombre;
             tempNombre = clienteComboBox.get(contador).getIdPK() + " " + clienteComboBox.get(contador).getIdentificacion() + " " + clienteComboBox.get(contador).getNombre() + " " + clienteComboBox.get(contador).getApellido();
             clienteMascota.addItem(tempNombre);
+            contador = contador+1;
+        }
+    }
+    
+    private void recargarComboBoxMascota(){
+        mascotaPago.removeAllItems();
+        this.mascotaComboBox = CtMascota.listarTodasMascotas();
+        int contador = 0;
+        while(contador < mascotaComboBox.size()){
+            String tempNombre;
+            tempNombre = mascotaComboBox.get(contador).getIdPK() + " " + mascotaComboBox.get(contador).getCodigo() + " " + mascotaComboBox.get(contador).getNombre();
+            mascotaPago.addItem(tempNombre);
+            contador = contador+1;
+        }
+    }
+    
+    private void recargarComboBoxPlan(){
+        planPago.removeAllItems();
+        this.planComboBox = CtPlan.listarTodosPlanes();
+        int contador = 0;
+        while(contador < planComboBox.size()){
+            String tempNombre;
+            tempNombre = planComboBox.get(contador).getIdPK() + " " + planComboBox.get(contador).getCodigo() + " " + planComboBox.get(contador).getNombre();
+            planPago.addItem(tempNombre);
             contador = contador+1;
         }
     }
@@ -793,24 +981,30 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField apellidoCliente;
     private javax.swing.JButton btnBorrarCliente;
     private javax.swing.JButton btnBorrarMascota;
+    private javax.swing.JButton btnBorrarPago;
     private javax.swing.JButton btnBorrarPlan;
     private javax.swing.JButton btnConsultarCliente;
     private javax.swing.JButton btnConsultarMascota;
+    private javax.swing.JButton btnConsultarPago;
     private javax.swing.JButton btnConsultarPlan;
     private javax.swing.JButton btnCrearCliente;
     private javax.swing.JButton btnCrearMascota;
+    private javax.swing.JButton btnCrearPago;
     private javax.swing.JButton btnCrearPlan;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiarCliente;
     private javax.swing.JButton btnLimpiarMascota;
+    private javax.swing.JButton btnLimpiarPago;
     private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnModificarMascota;
+    private javax.swing.JButton btnModificarPago;
     private javax.swing.JButton btnModificarPlan;
     private javax.swing.JComboBox<String> clienteMascota;
     private javax.swing.JTextField codigoMascota;
     private javax.swing.JTextField codigoPlan;
     private javax.swing.JTextField direccionCliente;
     private javax.swing.JComboBox<String> especieMascota;
+    private javax.swing.JTextField fechaPago;
     private javax.swing.JTextField identificacionCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -818,6 +1012,10 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -829,11 +1027,15 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> mascotaPago;
     private javax.swing.JTextField nombreCliente;
     private javax.swing.JTextField nombreMascota;
     private javax.swing.JComboBox<String> nombrePlan;
+    private javax.swing.JTextField numCuotaPago;
     private javax.swing.JTextField pesoMascota;
+    private javax.swing.JComboBox<String> planPago;
     private javax.swing.JTextField precioPlan;
     private javax.swing.JTextField telefonoCliente;
     // End of variables declaration//GEN-END:variables

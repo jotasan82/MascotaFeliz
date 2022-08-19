@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
 
 
 public class MdMascota {
@@ -83,4 +84,44 @@ public class MdMascota {
         }
     }
     
+    public boolean borrarMascota(Mascota m){
+        try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String consulta = "DELETE FROM mascota WHERE codigo = ?";
+            PreparedStatement statement = conn.prepareStatement(consulta);
+            statement.setString(1, m.getCodigo());
+            int filasActualizadas = statement.executeUpdate();
+            if(filasActualizadas > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    
+    public LinkedList<Mascota> buscarTodasMascotas(){
+        LinkedList<Mascota> listaMascotas = new LinkedList<>();
+        try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String consulta = "SELECT * FROM Mascota";
+            PreparedStatement statement = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+            ResultSet result = statement.executeQuery();
+            while(result.next()){
+                int idPK = result.getInt(1);
+                String codigo = result.getString(2);
+                String nombre = result.getString(3);
+                int annioNac = result.getInt(4);
+                int peso = result.getInt(5);
+                String especie = result.getString(6);
+                int idCliente = result.getInt(7);
+                Mascota m = new Mascota(codigo, nombre, annioNac, peso, especie, idCliente);
+                m.setIdPK(idPK);
+                listaMascotas.add(m);
+            }
+            return listaMascotas;
+        }catch(Exception e){
+        }
+        return listaMascotas;
+    }   
 }

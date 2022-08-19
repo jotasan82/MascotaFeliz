@@ -9,7 +9,7 @@ package Clases;
  * @author Pixel
  */
 public class Mascota {
-
+    private int idPK;
     private String codigo;
     private String nombre;
     private int annioNac;
@@ -109,6 +109,20 @@ public class Mascota {
      */
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
+    }
+
+    /**
+     * @return the idPK
+     */
+    public int getIdPK() {
+        return idPK;
+    }
+
+    /**
+     * @param idPK the idPK to set
+     */
+    public void setIdPK(int idPK) {
+        this.idPK = idPK;
     }
 
 }

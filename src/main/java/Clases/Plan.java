@@ -9,6 +9,7 @@ package Clases;
  * @author Pixel
  */
 public class Plan {
+    private int idPK;
     private String codigo;
     private String nombre;
     private int precio;
@@ -61,5 +62,19 @@ public class Plan {
      */
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    /**
+     * @return the idPK
+     */
+    public int getIdPK() {
+        return idPK;
+    }
+
+    /**
+     * @param idPK the idPK to set
+     */
+    public void setIdPK(int idPK) {
+        this.idPK = idPK;
     }
 }
