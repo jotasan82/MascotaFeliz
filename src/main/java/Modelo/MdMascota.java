@@ -104,7 +104,7 @@ public class MdMascota {
     public LinkedList<Mascota> buscarTodasMascotas(){
         LinkedList<Mascota> listaMascotas = new LinkedList<>();
         try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
-            String consulta = "SELECT * FROM Mascota";
+            String consulta = "SELECT * FROM mascota";
             PreparedStatement statement = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
             ResultSet result = statement.executeQuery();
             while(result.next()){
