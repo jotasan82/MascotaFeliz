@@ -588,6 +588,9 @@ public class Vista extends javax.swing.JFrame {
             btnModificarCliente.setEnabled(true);
             btnBorrarCliente.setEnabled(true);
         }
+        btnModificarCliente.setEnabled(true);
+        btnBorrarCliente.setEnabled(true);
+        btnCrearCliente.setEnabled(false);
     }//GEN-LAST:event_btnConsultarClienteActionPerformed
 
     private void btnModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClienteActionPerformed
@@ -659,6 +662,7 @@ public class Vista extends javax.swing.JFrame {
             //telefonoClie.setText(String.valueOf(c.getTelefono()));
             btnModificarMascota.setEnabled(true);
             btnBorrarMascota.setEnabled(true);
+            btnCrearMascota.setEnabled(false);
         }
     }//GEN-LAST:event_btnConsultarMascotaActionPerformed
 
@@ -666,7 +670,7 @@ public class Vista extends javax.swing.JFrame {
         String codigo = codigoMascota.getText();
         String nombre = nombreMascota.getText();
         int annioNac = Integer.parseInt(annioNacMascota.getText());
-        double peso = Double.parseDouble(pesoMascota.getText());
+        int peso = Integer.parseInt(pesoMascota.getText());
         String especie = especieMascota.getSelectedItem().toString();
         //int idPKCliente = CtCliente.obtenerIdPKClienteComboBox(clienteComboBox, clienteMascota);
         String clienteSeleccionado = clienteMascota.getSelectedItem().toString();
@@ -692,7 +696,7 @@ public class Vista extends javax.swing.JFrame {
         String codigo = codigoMascota.getText();
         String nombre = nombreMascota.getText();
         int annioNac = Integer.parseInt(annioNacMascota.getText());
-        Double peso = Double.parseDouble(direccionCliente.getText());
+        int peso = Integer.parseInt(pesoMascota.getText());
         String especie = especieMascota.getSelectedItem().toString();
         String clienteSeleccionado = clienteMascota.getSelectedItem().toString();
         int primerEspacio = clienteSeleccionado.indexOf(" ");
@@ -722,6 +726,7 @@ public class Vista extends javax.swing.JFrame {
         telefonoCliente.setText("");
         btnModificarCliente.setEnabled(false);
         btnBorrarCliente.setEnabled(false);
+        btnCrearCliente.setEnabled(true);
     }
     
     private void limpiarMascota(){
@@ -733,6 +738,7 @@ public class Vista extends javax.swing.JFrame {
         clienteMascota.setSelectedIndex(0);
         btnModificarMascota.setEnabled(false);
         btnBorrarMascota.setEnabled(false);
+        btnCrearMascota.setEnabled(true);
     }
     
     private void recargarComboBoxCliente(){

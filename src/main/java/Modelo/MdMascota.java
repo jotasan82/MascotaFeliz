@@ -26,7 +26,7 @@ public class MdMascota {
             statement.setString(1, m.getCodigo());
             statement.setString(2, m.getNombre());
             statement.setInt(3, m.getAnnioNac());
-            statement.setDouble(4, m.getPeso());
+            statement.setInt(4, m.getPeso());
             statement.setString(5, m.getEspecie());
             statement.setInt(6, m.getIdCliente());
             int filasInsertadas = statement.executeUpdate();
@@ -51,7 +51,7 @@ public class MdMascota {
                 String cod = result.getString(2);
                 String nombre = result.getString(3);
                 int annioNac = result.getInt(4);
-                Double peso = result.getDouble(5);
+                int peso = result.getInt(5);
                 String especie = result.getString(6);
                 int idCliente = result.getInt(7);
                 m = new Mascota(cod, nombre, annioNac, peso, especie, idCliente);
@@ -68,7 +68,7 @@ public class MdMascota {
             PreparedStatement statement = conn.prepareStatement(consulta);
             statement.setString(1, m.getNombre());
             statement.setInt(2, m.getAnnioNac());
-            statement.setDouble(3, m.getPeso());
+            statement.setInt(3, m.getPeso());
             statement.setString(4, m.getEspecie());
             statement.setInt(5, m.getIdCliente());
             statement.setString(6, m.getCodigo());

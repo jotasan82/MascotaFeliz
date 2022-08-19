@@ -13,11 +13,11 @@ public class Mascota {
     private String codigo;
     private String nombre;
     private int annioNac;
-    private double peso;
+    private int peso;
     private String especie;
     private int idCliente;
 
-    public Mascota(String codigo, String nombre, int annioNac, double peso, String especie, int idCliente) {
+    public Mascota(String codigo, String nombre, int annioNac, int peso, String especie, int idCliente) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.annioNac = annioNac;
@@ -72,14 +72,14 @@ public class Mascota {
     /**
      * @return the peso
      */
-    public double getPeso() {
+    public int getPeso() {
         return peso;
     }
 
     /**
      * @param peso the peso to set
      */
-    public void setPeso(double peso) {
+    public void setPeso(int peso) {
         this.peso = peso;
     }
 
