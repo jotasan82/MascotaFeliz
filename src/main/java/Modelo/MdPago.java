@@ -13,6 +13,7 @@ import java.sql.Statement;
 
 public class MdPago {
     DbData dbData;
+    private int idPago;
     
     public MdPago(){
         this.dbData = new DbData();
@@ -46,6 +47,7 @@ public class MdPago {
             statement.setInt(2, idFkMascota);
             ResultSet result = statement.executeQuery();
             while(result.next()){
+                idPago = result.getInt(1);
                 String fecha = result.getString(2);
                 int numCuota = result.getInt(3);
                 int idMascota = result.getInt(4);
@@ -56,5 +58,25 @@ public class MdPago {
         }catch(Exception e){
         }
         return p;
+    }
+    
+    public boolean modificarPago(Pago p){
+        try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String consulta = "UPDATE pago SET fechaPago = ?, numeroCuotas = ?, idMascota = ?, idPlan = ? WHERE idPago = ?";
+            PreparedStatement statement = conn.prepareStatement(consulta);
+            statement.setString(1, p.getFechaPago());
+            statement.setInt(2, p.getNumeroCuotas());
+            statement.setInt(3, p.getIdMascota());
+            statement.setInt(4, p.getIdPlan());
+            statement.setInt(5, idPago);
+            int filasActualizadas = statement.executeUpdate();
+            if(filasActualizadas > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
     }
 }

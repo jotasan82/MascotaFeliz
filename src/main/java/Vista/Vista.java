@@ -498,9 +498,19 @@ public class Vista extends javax.swing.JFrame {
 
         btnModificarPago.setText("Modificar");
         btnModificarPago.setEnabled(false);
+        btnModificarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPagoActionPerformed(evt);
+            }
+        });
 
         btnBorrarPago.setText("Borrar");
         btnBorrarPago.setEnabled(false);
+        btnBorrarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarPagoActionPerformed(evt);
+            }
+        });
 
         btnLimpiarPago.setText("Limpiar");
 
@@ -902,6 +912,42 @@ public class Vista extends javax.swing.JFrame {
             btnCrearPago.setEnabled(false);
         }
     }//GEN-LAST:event_btnConsultarPagoActionPerformed
+
+    private void btnModificarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPagoActionPerformed
+        String fecha = fechaPago.getText();
+        int cuota = Integer.parseInt(numCuotaPago.getText());
+        String mascotaSeleccionada = mascotaPago.getSelectedItem().toString();
+        int primerEspacio = mascotaSeleccionada.indexOf(" ");
+        int idFkMascota = Integer.parseInt(mascotaSeleccionada.substring(0, primerEspacio));
+        String planSeleccionado = planPago.getSelectedItem().toString();
+        primerEspacio = planSeleccionado.indexOf(" ");
+        int idFkPlan = Integer.parseInt(planSeleccionado.substring(0, primerEspacio));
+        Pago p = new Pago(fecha, cuota, idFkMascota, idFkPlan);
+        if (this.CtPago.modificarPago(p)){
+            JOptionPane.showMessageDialog(this, "El Pago fue modificado en la base de datos");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo modificar el Pago en la base de datos");
+        }
+        limpiarPago();
+    }//GEN-LAST:event_btnModificarPagoActionPerformed
+
+    private void btnBorrarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPagoActionPerformed
+        String fecha = fechaPago.getText();
+        int cuota = Integer.parseInt(numCuotaPago.getText());
+        String mascotaSeleccionada = mascotaPago.getSelectedItem().toString();
+        int primerEspacio = mascotaSeleccionada.indexOf(" ");
+        int idFkMascota = Integer.parseInt(mascotaSeleccionada.substring(0, primerEspacio));
+        String planSeleccionado = planPago.getSelectedItem().toString();
+        primerEspacio = planSeleccionado.indexOf(" ");
+        int idFkPlan = Integer.parseInt(planSeleccionado.substring(0, primerEspacio));
+        Pago p = new Pago(fecha, cuota, idFkMascota, idFkPlan);
+        if (this.CtPago.borrarPago(p)){
+            JOptionPane.showMessageDialog(this, "El Pago fue modificado en la base de datos");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo modificar el Pago en la base de datos");
+        }
+        limpiarPago();
+    }//GEN-LAST:event_btnBorrarPagoActionPerformed
 
     private void limpiarCampos(){
         codigoPlan.setText("");

@@ -28,4 +28,8 @@ public class CtPago {
        p = this.MdPago.buscarPago(cuota, idFkMascota);
        return p;
     }
+    
+    public boolean modificarPago(Pago p){
+       return this.MdPago.modificarPago(p);
+    }
 }
