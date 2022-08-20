@@ -388,7 +388,7 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        especieMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canino", "Felino" }));
+        especieMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canino", "Felino", "Reptil", "Ave", "Pez" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -490,6 +490,11 @@ public class Vista extends javax.swing.JFrame {
         });
 
         btnConsultarPago.setText("Consultar");
+        btnConsultarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarPagoActionPerformed(evt);
+            }
+        });
 
         btnModificarPago.setText("Modificar");
         btnModificarPago.setEnabled(false);
@@ -599,6 +604,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo agregar el registro a la base de datos");
         }
         limpiarCampos();
+        recargarComboBoxPlan();
     }//GEN-LAST:event_btnCrearPlanActionPerformed
 
     private void btnConsultarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPlanActionPerformed
@@ -641,6 +647,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe buscar el registro para actualizar");
         }
         limpiarCampos();
+        recargarComboBoxPlan();
     }//GEN-LAST:event_btnModificarPlanActionPerformed
 
     private void btnBorrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPlanActionPerformed
@@ -659,6 +666,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo borrar el registro");
         }
         limpiarCampos();
+        recargarComboBoxPlan();
         
         /*String codigo = codigoPlan.getText();
         if(this.CtPlan.borrarPlan(codigo)){
@@ -802,6 +810,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo agregar la Mascota a la base de datos");
         }
         limpiarMascota();
+        recargarComboBoxMascota();
     }//GEN-LAST:event_btnCrearMascotaActionPerformed
 
     
@@ -826,6 +835,7 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo modificar la Mascota en la base de datos");
         }
         limpiarMascota();
+        recargarComboBoxMascota();
     }//GEN-LAST:event_btnModificarMascotaActionPerformed
 
     private void btnCrearPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPagoActionPerformed
@@ -862,7 +872,36 @@ public class Vista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo borrar la Mascota de la base de datos");
         }
         limpiarMascota();
+        recargarComboBoxMascota();
     }//GEN-LAST:event_btnBorrarMascotaActionPerformed
+
+    private void btnConsultarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPagoActionPerformed
+        String mascotaSeleccionada = mascotaPago.getSelectedItem().toString();
+        int primerEspacio = mascotaSeleccionada.indexOf(" ");
+        int idFkMascota = Integer.parseInt(mascotaSeleccionada.substring(0, primerEspacio));
+        int cuota = Integer.parseInt(numCuotaPago.getText());
+        System.out.println(idFkMascota+" - "+ cuota);
+        Pago p = CtPago.buscarPago(cuota, idFkMascota);    
+        if (p == null){
+            JOptionPane.showMessageDialog(this, "El Pago no fue encontrado");
+            limpiarPago();
+        }else{
+            fechaPago.setText(String.valueOf(p.getFechaPago()));
+            int indice = 0;
+            //System.out.println("El id del Cliente es: "+m.getIdCliente());
+            for (Plan pl:planComboBox){
+                if (pl.getIdPK()==p.getIdPlan()){
+                    planPago.setSelectedIndex(indice);
+                }
+                indice++;
+            }
+            //clienteMascota.setSelectedItem(m.getIdCliente());
+            //telefonoClie.setText(String.valueOf(c.getTelefono()));
+            btnModificarPago.setEnabled(true);
+            btnBorrarPago.setEnabled(true);
+            btnCrearPago.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnConsultarPagoActionPerformed
 
     private void limpiarCampos(){
         codigoPlan.setText("");

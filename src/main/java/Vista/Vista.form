@@ -583,9 +583,12 @@
             <Component class="javax.swing.JComboBox" name="especieMascota">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
+                  <StringArray count="5">
                     <StringItem index="0" value="Canino"/>
                     <StringItem index="1" value="Felino"/>
+                    <StringItem index="2" value="Reptil"/>
+                    <StringItem index="3" value="Ave"/>
+                    <StringItem index="4" value="Pez"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -749,6 +752,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarPagoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnModificarPago">
               <Properties>

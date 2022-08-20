@@ -21,5 +21,11 @@ public class CtPago {
            return false;
        }
        return true;
-   }
+    }
+    
+    public Pago buscarPago(int cuota, int idFkMascota){
+       Pago p = null;
+       p = this.MdPago.buscarPago(cuota, idFkMascota);
+       return p;
+    }
 }
