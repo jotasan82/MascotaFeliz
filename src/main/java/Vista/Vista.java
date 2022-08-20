@@ -513,6 +513,11 @@ public class Vista extends javax.swing.JFrame {
         });
 
         btnLimpiarPago.setText("Limpiar");
+        btnLimpiarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarPagoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -932,7 +937,7 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarPagoActionPerformed
 
     private void btnBorrarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPagoActionPerformed
-        String fecha = fechaPago.getText();
+        /*String fecha = fechaPago.getText();
         int cuota = Integer.parseInt(numCuotaPago.getText());
         String mascotaSeleccionada = mascotaPago.getSelectedItem().toString();
         int primerEspacio = mascotaSeleccionada.indexOf(" ");
@@ -940,14 +945,18 @@ public class Vista extends javax.swing.JFrame {
         String planSeleccionado = planPago.getSelectedItem().toString();
         primerEspacio = planSeleccionado.indexOf(" ");
         int idFkPlan = Integer.parseInt(planSeleccionado.substring(0, primerEspacio));
-        Pago p = new Pago(fecha, cuota, idFkMascota, idFkPlan);
-        if (this.CtPago.borrarPago(p)){
-            JOptionPane.showMessageDialog(this, "El Pago fue modificado en la base de datos");
+        Pago p = new Pago(fecha, cuota, idFkMascota, idFkPlan);*/
+        if (this.CtPago.borrarPago()){
+            JOptionPane.showMessageDialog(this, "El Pago fue borrado de la base de datos");
         }else{
-            JOptionPane.showMessageDialog(this, "No se pudo modificar el Pago en la base de datos");
+            JOptionPane.showMessageDialog(this, "El Pago no fue borrado de la base de datos");
         }
         limpiarPago();
     }//GEN-LAST:event_btnBorrarPagoActionPerformed
+
+    private void btnLimpiarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPagoActionPerformed
+        limpiarPago();
+    }//GEN-LAST:event_btnLimpiarPagoActionPerformed
 
     private void limpiarCampos(){
         codigoPlan.setText("");

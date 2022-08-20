@@ -79,4 +79,21 @@ public class MdPago {
             return false;
         }
     }
+    
+    public boolean borrarPago(){
+        try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String consulta = "DELETE FROM pago WHERE idPago = ?";
+            PreparedStatement statement = conn.prepareStatement(consulta);
+            statement.setInt(1, idPago);
+            int filasActualizadas = statement.executeUpdate();
+            if(filasActualizadas > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }

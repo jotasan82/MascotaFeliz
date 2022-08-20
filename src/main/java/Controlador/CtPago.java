@@ -32,4 +32,8 @@ public class CtPago {
     public boolean modificarPago(Pago p){
        return this.MdPago.modificarPago(p);
     }
+    
+    public boolean borrarPago(){
+       return this.MdPago.borrarPago();
+    }
 }
