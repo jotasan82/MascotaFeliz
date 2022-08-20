@@ -559,7 +559,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(btnModificarPago)
                     .addComponent(btnBorrarPago)
                     .addComponent(btnLimpiarPago))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pago", jPanel4);
@@ -911,7 +911,7 @@ public class Vista extends javax.swing.JFrame {
         int contador = 0;
         while(contador < clienteComboBox.size()){
             String tempNombre;
-            tempNombre = clienteComboBox.get(contador).getIdPK() + " " + clienteComboBox.get(contador).getIdentificacion() + " " + clienteComboBox.get(contador).getNombre() + " " + clienteComboBox.get(contador).getApellido();
+            tempNombre = clienteComboBox.get(contador).getIdPK() + " - " + clienteComboBox.get(contador).getIdentificacion() + " - " + clienteComboBox.get(contador).getNombre() + " " + clienteComboBox.get(contador).getApellido();
             clienteMascota.addItem(tempNombre);
             contador = contador+1;
         }
@@ -923,7 +923,7 @@ public class Vista extends javax.swing.JFrame {
         int contador = 0;
         while(contador < mascotaComboBox.size()){
             String tempNombre;
-            tempNombre = mascotaComboBox.get(contador).getIdPK() + " " + mascotaComboBox.get(contador).getCodigo() + " " + mascotaComboBox.get(contador).getNombre();
+            tempNombre = mascotaComboBox.get(contador).getIdPK() + " - " + mascotaComboBox.get(contador).getCodigo() + " - " + mascotaComboBox.get(contador).getNombre();
             mascotaPago.addItem(tempNombre);
             contador = contador+1;
         }
@@ -935,7 +935,7 @@ public class Vista extends javax.swing.JFrame {
         int contador = 0;
         while(contador < planComboBox.size()){
             String tempNombre;
-            tempNombre = planComboBox.get(contador).getIdPK() + " " + planComboBox.get(contador).getCodigo() + " " + planComboBox.get(contador).getNombre();
+            tempNombre = planComboBox.get(contador).getIdPK() + " - " + planComboBox.get(contador).getNombre() + " - " + planComboBox.get(contador).getPrecio();
             planPago.addItem(tempNombre);
             contador = contador+1;
         }

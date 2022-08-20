@@ -98,7 +98,7 @@ public class MdPlan {
     public LinkedList<Plan> buscarTodosPlanes(){
         LinkedList<Plan> listaPlanes = new LinkedList<>();
         try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
-            String consulta = "SELECT * FROM Plan";
+            String consulta = "SELECT * FROM plan";
             PreparedStatement statement = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
             ResultSet result = statement.executeQuery();
             while(result.next()){

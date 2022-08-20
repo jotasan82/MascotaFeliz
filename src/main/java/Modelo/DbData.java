@@ -12,7 +12,7 @@ public class DbData {
     private String driver = "com.mysql.jdbc.Driver";
     private String user = "root";
     private String password = "";
-    private String url = "jdbc:mysql://localhost:3306/mascotafeliz";
+    private String url = "jdbc:mysql://localhost:3306/MascotaFelz";
 
     /**
      * @return the driver

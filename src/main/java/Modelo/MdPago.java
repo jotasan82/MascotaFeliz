@@ -19,7 +19,7 @@ public class MdPago {
     
     public boolean crearPago(Pago p){
         try(Connection conn = DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
-            String query = "INSERT INTO pago (fechaPago, numeroCuota, idMascota, idPlan) VALUES (?,?,?,?)";
+            String query = "INSERT INTO pago (fechaPago, numeroCuotas, idMascota, idPlan) VALUES (?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, p.getFechaPago());
             statement.setInt(2, p.getNumeroCuotas());
